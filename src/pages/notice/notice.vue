@@ -1,5 +1,4 @@
 <template>
-	<div id="app">
 		<basic-container>
 			<avue-crud
 				:option="option"
@@ -29,7 +28,6 @@
 				</template>
 			</avue-crud>
 		</basic-container>
-	</div>
 </template>
 
 <script>

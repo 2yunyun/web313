@@ -1,5 +1,4 @@
 <template>
-	<div id="app">
 		<basic-container>
 			<div class="wel">
 				<basic-block :width="width" :height="height" icon="el-icon-platform-eleme" text="开始菜单1" time="1" background="/img/bg/bg3.jpg" color="#d56259"></basic-block>
@@ -58,7 +57,6 @@
 				></basic-block>
 			</div>
 		</basic-container>
-	</div>
 </template>
 
 <script>
