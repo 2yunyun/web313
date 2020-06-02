@@ -215,10 +215,10 @@ module.exports = {
 
 			config.plugin(`html-${page}`).tap(args => {
 				// html中添加cdn
-				//args[0].cdn = cdn;
+				args[0].cdn = cdn;
 
 				// 修复 Lazy loading routes Error
-				//args[0].chunksSortMode = "none";
+				args[0].chunksSortMode = "none";
 				console.log(args);
 				return args;
 			});
