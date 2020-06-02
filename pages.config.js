@@ -118,6 +118,21 @@ module.exports = {
     template: 'public/index.html',
     filename: 'systemTenant.html',
     title: '租户管理'
+  },
+  'authorityApiscope':{
+    template: 'public/index.html',
+    filename: 'authorityApiscope.html',
+    title: '接口管理'
+  },
+  'authorityDatascope':{
+    template: 'public/index.html',
+    filename: 'authorityDatascope.html',
+    title: '数据管理'
+  },
+  'authorityRole':{
+    template: 'public/index.html',
+    filename: 'authorityRole.html',
+    title: '角色管理'
   }
   
   
