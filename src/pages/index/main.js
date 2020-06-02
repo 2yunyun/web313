@@ -1,7 +1,9 @@
-import Vue from 'vue'
+import webCommon from '@config/common';
+
 import App from '@pages/index/index.vue'
 
-Vue.config.productionTip = false
+// 加载webCommon
+Vue.prototype.webCommon = webCommon;
 
 new Vue({
   render: h => h(App)

@@ -1,9 +1,7 @@
 <template>
-	<div id="app">
 		<div class="basic-container" :class="{ 'basic-container--block': block }">
 			<el-card><slot></slot></el-card>
 		</div>
-	</div>
 </template>
 
 <script>

@@ -1,5 +1,4 @@
 <template>
-	<div id="app">
 		<div class="basic-block" :style="styleName">
 			<div class="box" :style="boxStyleName">
 				<!-- <router-link :to="to"> -->
@@ -9,7 +8,6 @@
 				<!-- </router-link> -->
 			</div>
 		</div>
-	</div>
 </template>
 
 <script>
