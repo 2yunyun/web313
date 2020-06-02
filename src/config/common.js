@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Avue from '@smallwei/avue';
 import '@smallwei/avue/lib/index.css';
-import App from '@pages/desk_notice/notice.vue'
-
 
 import store from '@/store';
 import {loadStyle} from '@util/util'
