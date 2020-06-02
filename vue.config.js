@@ -26,8 +26,6 @@ glob.sync('./src/pages/**/main.js').forEach(entry => {
 	}
 })
 
-console.log(pages);
-
 let has_sprite = true;
 let files = [];
 const icons = {};
@@ -170,7 +168,7 @@ module.exports = {
 		config.resolve.alias
 			.set("vue$", "vue/dist/vue.esm.js")
 			.set("@", resolve("src"))
-			.set("@apis", resolve("src/apis"))
+			.set("@api", resolve("src/api"))
 			.set("@assets", resolve("src/assets"))
 			.set("@scss", resolve("src/assets/scss"))
 			.set("@components", resolve("src/components"))
@@ -179,8 +177,10 @@ module.exports = {
 			.set("@plugins", resolve("src/plugins"))
 			.set("@router", resolve("src/router"))
 			.set("@store", resolve("src/store"))
-			.set("@utils", resolve("src/utils"))
+			.set("@util", resolve("src/util"))
 			.set("@views", resolve("src/views"))
+			.set("@pages", resolve("src/pages"))
+			.set("@config", resolve("src/config"))
 			.set("@layouts", resolve("src/layouts"));
 
 		const cdn = {
@@ -211,15 +211,11 @@ module.exports = {
 		//多页面cdn添加
 		console.log(pagesInfo);
 		Object.keys(pagesInfo).forEach(page => {
-			//console.log(page);
-
 			config.plugin(`html-${page}`).tap(args => {
 				// html中添加cdn
 				args[0].cdn = cdn;
-
 				// 修复 Lazy loading routes Error
 				args[0].chunksSortMode = "none";
-				console.log(args);
 				return args;
 			});
 		})

@@ -3,11 +3,11 @@
        :style="styleName">
     <div class="box"
          :style="boxStyleName">
-      <router-link :to="to">
+      <!-- <router-link :to="to"> -->
         <span v-text="text"></span>
         <p v-text="dept"></p>
         <i :class="icon"></i>
-      </router-link>
+      <!-- </router-link> -->
     </div>
   </div>
 </template>

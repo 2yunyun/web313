@@ -3,6 +3,9 @@
     <img alt="Vue logo" src="@/assets/logo.png" />
     <h4>下面是一些单页面入口(需手动修改为当前页面ip及端口号)</h4>
     <p>首页 ：http://localhost:1888/index.html</p>
+	<p>控制台：http://localhost:1888/dashboard.html</p>
+	<p>工作台-通知公告：http://localhost:1888/notice.html</p>
+	
     <p>请假流程页：http://localhost:1888/workForm.html</p>
   </div>
 </template>

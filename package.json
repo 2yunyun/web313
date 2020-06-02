@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@smallwei/avue": "^2.6.0",
+    "avue-plugin-ueditor": "^0.1.4",
     "axios": "^0.19.0",
     "core-js": "^3.3.2",
     "vue": "^2.6.10",
@@ -53,7 +54,15 @@
     "svg-sprite-loader": "^4.1.6",
     "svgtofont": "^1.5.1",
     "vue-template-compiler": "^2.6.10",
-    "webpack-spritesmith": "^1.0.2"
+    "webpack-spritesmith": "^1.0.2",
+	"js-base64": "^2.5.1",
+	"js-cookie": "^2.2.0",
+	"js-md5": "^0.7.3",
+	"mockjs": "^1.0.1-beta3",
+	"node-gyp": "^5.0.6",
+	"nprogress": "^0.2.0",
+	"portfinder": "^1.0.23",
+	"script-loader": "^0.7.2"
   },
   "husky": {
     "hooks": {
