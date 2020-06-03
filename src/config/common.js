@@ -1,8 +1,10 @@
-import Vue from 'vue'
+import Vue from 'vue';
+import axios from '@router/axios';
+import VueAxios from 'vue-axios';
 import Avue from '@smallwei/avue';
 import '@smallwei/avue/lib/index.css';
 
-import store from '@/store';
+import i18n from '@/lang' 
 import {loadStyle} from '@util/util'
 import Element from 'element-ui';
 import '@/styles/common.scss';
@@ -17,8 +19,13 @@ import {
 
 import website from '@config/website';
 
-Vue.use(Avue);
-Vue.use(Element);
+Vue.use(VueAxios, axios);
+Vue.use(Element, {
+  i18n: (key, value) => i18n.t(key, value)
+});
+Vue.use(Avue, {
+  i18n: (key, value) => i18n.t(key, value)
+});
 
 //注册全局容器
 Vue.component('basicContainer', basicContainer);

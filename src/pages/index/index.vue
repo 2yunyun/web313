@@ -1,85 +1,143 @@
 <template>
-  <div>
-    <el-row>
-      <el-col :span="24">
-        <basic-container>
-          <p style="text-align: center">
-            <img src="https://img.shields.io/badge/Release-V2.5.0-green.svg" alt="Downloads"/>
-            <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR5-blue.svg" alt="Coverage Status"/>
-            <img src="https://img.shields.io/badge/Spring%20Boot-2.1.13.RELEASE-blue.svg" alt="Downloads"/>
-            <a target="_blank" href="https://www.aabb.com">
-              <img src="https://img.shields.io/badge/Saber%20Author-Small%20Chill-ff69b4.svg" alt="Downloads"/>
-            </a>
-            <a target="_blank" href="https://www.aabb.com">
-              <img src="https://img.shields.io/badge/Copyright%20-@BladeX-%23ff3f59.svg" alt="Downloads"/>
-            </a>
-          </p>
-        </basic-container>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="16">
-        <basic-container>
-          <el-collapse v-model="activeNames" @change="handleChange">
-            <el-collapse-item title="欢迎使用" name="1">
-              <div>1.</div>
-              <div>2.</div>
-            </el-collapse-item>
-          </el-collapse>
-        </basic-container>
-      </el-col>
-      <el-col :span="8">
-        <el-row>
-          <basic-container>
-            <div class="el-font-size">
-              <span>产品名称</span>
-              <el-divider direction="vertical"/>
-              <span><el-tag>企业级微服务开发平台</el-tag></span>
-            </div>
-          </basic-container>
-        </el-row>
-        <el-row>
-          <basic-container>
-            <el-collapse v-model="logActiveNames" @change="handleChange">
-              <el-collapse-item title="2出" name="15">
-                <div>1.</div>
-              </el-collapse-item>
-            </el-collapse>
-          </basic-container>
-        </el-row>
-      </el-col>
-    </el-row>
+  <div class="avue-contail" :class="{'avue--collapse':isCollapse}">
+    <div class="avue-header">
+      <!-- 顶部导航栏 -->
+      <top ref="top"/>
+    </div>
+    <div class="avue-layout">
+      <div class="avue-left">
+        <!-- 左侧导航栏 -->
+        <sidebar/>
+      </div>
+      <div class="avue-main">
+        <!-- 顶部标签卡 -->
+        <tags/>
+        <transition name="fade-scale">
+          <search class="avue-view" v-show="isSearch"></search>
+        </transition>
+        <!-- 主体视图层 -->
+        <div style="height:100%;overflow-y:auto;overflow-x:hidden;" id="avue-view" v-show="!isSearch">
+          <keep-alive>
+            <router-view class="avue-view" v-if="$route.meta.$keepAlive"/>
+          </keep-alive>
+          <router-view class="avue-view" v-if="!$route.meta.$keepAlive"/>
+        </div>
+      </div>
+    </div>
+    <div class="avue-shade" @click="showCollapse"></div>
   </div>
 </template>
 
 <script>
   import {mapGetters} from "vuex";
+  import tags from "@components/page/index/tags";
+  import search from "@components/page/index/search";
+  import top from "@components/page/index/top/";
+  import sidebar from "@components/page/index/sidebar/";
+  import admin from "@util/admin";
+  import {validatenull} from "@util/validate";
+  import {calcDate} from "@util/date";
+  import {getStore} from "@util/store";
 
   export default {
-    name: "wel",
-    data() {
+    components: {
+      top,
+      tags,
+      search,
+      sidebar
+    },
+    name: "index",
+    provide() {
       return {
-        activeNames: ['1', '2', '3', '5'],
-        logActiveNames: ['15']
+        index: this
       };
     },
-    computed: {
-      ...mapGetters(["userInfo"]),
+    data() {
+      return {
+        //搜索控制
+        isSearch: false,
+        //刷新token锁
+        refreshLock: false,
+        //刷新token的时间
+        refreshTime: ""
+      };
     },
     created() {
+      //实时检测刷新token
+      this.refreshToken();
     },
+    mounted() {
+      this.init();
+    },
+    computed: mapGetters(["isMenu", "isLock", "isCollapse", "website", "menu"]),
+    props: [],
     methods: {
-      handleChange(val) {
-        window.console.log(val);
+      showCollapse() {
+        this.$store.commit("SET_COLLAPSE");
+      },
+      // 初始化
+      init() {
+        this.$store.commit("SET_SCREEN", admin.getScreen());
+        window.onresize = () => {
+          setTimeout(() => {
+            this.$store.commit("SET_SCREEN", admin.getScreen());
+          }, 0);
+        };
+        this.$store.dispatch("FlowRoutes").then(() => {
+        });
+      },
+      //打开菜单
+      openMenu(item = {}) {
+        this.$store.dispatch("GetMenu", item.id).then(data => {
+          if (data.length !== 0) {
+            this.$router.$avueRouter.formatRoutes(data, true);
+          }
+          //当点击顶部菜单后默认打开第一个菜单
+          /*if (!this.validatenull(item)) {
+            let itemActive = {},
+              childItemActive = 0;
+            if (item.path) {
+              itemActive = item;
+            } else {
+              if (this.menu[childItemActive].length === 0) {
+                itemActive = this.menu[childItemActive];
+              } else {
+                itemActive = this.menu[childItemActive].children[childItemActive];
+              }
+            }
+            this.$store.commit('SET_MENU_ID', item);
+            this.$router.push({
+              path: this.$router.$avueRouter.getPath({
+                name: (itemActive.label || itemActive.name),
+                src: itemActive.path
+              }, itemActive.meta)
+            });
+          }*/
+
+        });
+      },
+      // 定时检测token
+      refreshToken() {
+        this.refreshTime = setInterval(() => {
+          const token = getStore({
+            name: "token",
+            debug: true
+          }) || {};
+          const date = calcDate(token.datetime, new Date().getTime());
+          if (validatenull(date)) return;
+          if (date.seconds >= this.website.tokenTime && !this.refreshLock) {
+            this.refreshLock = true;
+            this.$store
+              .dispatch("refreshToken")
+              .then(() => {
+                this.refreshLock = false;
+              })
+              .catch(() => {
+                this.refreshLock = false;
+              });
+          }
+        }, 10000);
       }
     }
   };
 </script>
-
-<style>
-  .el-font-size {
-    font-size: 14px;
-  }
-</style>
-

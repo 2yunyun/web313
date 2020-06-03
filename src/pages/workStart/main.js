@@ -1,4 +1,6 @@
 import webCommon from '@config/common';
+import store from '@/store';
+import i18n from '@/lang'
 
 import App from '@pages/workStart/workStart.vue'
 
@@ -6,6 +8,8 @@ import App from '@pages/workStart/workStart.vue'
 Vue.prototype.webCommon = webCommon;
 
 new Vue({
-  render: h => h(App)
+  store,
+	i18n,
+	render: h => h(App)
 }).$mount('#app')
 
