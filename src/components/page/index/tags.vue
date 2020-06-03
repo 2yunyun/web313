@@ -85,10 +85,10 @@
     },
     methods: {
       generateTitle(item) {
-        return this.$router.$avueRouter.generateTitle(
-          item.label,
-          (item.meta || {}).i18n
-        );
+        // return this.$router.$avueRouter.generateTitle(
+        //   item.label,
+        //   (item.meta || {}).i18n
+        // );
       },
       watchContextmenu(event) {
         if (!this.$el.contains(event.target) || event.button !== 0) {
@@ -135,13 +135,13 @@
         } else {
           tag = item;
         }
-        this.$router.push({
-          path: this.$router.$avueRouter.getPath({
-            name: tag.label,
-            src: tag.value
-          }, tag.meta),
-          query: tag.query
-        });
+        // this.$router.push({
+        //   path: this.$router.$avueRouter.getPath({
+        //     name: tag.label,
+        //     src: tag.value
+        //   }, tag.meta),
+        //   query: tag.query
+        // });
       },
       closeOthersTags() {
         this.contextmenuFlag = false;
@@ -160,12 +160,12 @@
       closeAllTags() {
         this.contextmenuFlag = false;
         this.$store.commit("DEL_ALL_TAG");
-        this.$router.push({
-          path: this.$router.$avueRouter.getPath({
-            src: this.tagWel.value
-          }),
-          query: this.tagWel.query
-        });
+        // this.$router.push({
+        //   path: this.$router.$avueRouter.getPath({
+        //     src: this.tagWel.value
+        //   }),
+        //   query: this.tagWel.query
+        // });
       },
       clearCacheTags() {
         this.$confirm("是否需要清除缓存?", {

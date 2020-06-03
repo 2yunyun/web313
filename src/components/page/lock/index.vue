@@ -49,7 +49,8 @@ export default {
         type: "warning"
       }).then(() => {
         this.$store.dispatch("LogOut").then(() => {
-          this.$router.push({ path: "/login" });
+          //this.$router.push({ path: "/login" });
+		  window.location.href="login.html";
         });
       });
     },
@@ -69,9 +70,13 @@ export default {
       this.pass = true;
       setTimeout(() => {
         this.$store.commit("CLEAR_LOCK");
-        this.$router.push({
-          path: this.$router.$avueRouter.getPath({ src: this.tag.value })
-        });
+		this.$message({
+		  message: this.tag.value,
+		  type: "error"
+		});
+        // this.$router.push({
+        //   path: this.$router.$avueRouter.getPath({ src: this.tag.value })
+        // });
       }, 1000);
     }
   },

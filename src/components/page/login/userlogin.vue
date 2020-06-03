@@ -146,7 +146,8 @@
         });
       },
       getTenant() {
-        let domain = window.location.href.split("/#/")[0];
+		  console.log('location.href: '+window.location.href);
+        let domain = window.location.href.split("/")[0];
         info(domain).then(res => {
           const data = res.data;
           if (data.success && data.data.tenantId) {

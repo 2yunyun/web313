@@ -110,13 +110,13 @@
       handleSelect(item) {
         this.handleEsc();
         this.value = "";
-        this.$router.push({
-          path: this.$router.$avueRouter.getPath({
-            name: item[this.labelKey],
-            src: item[this.pathKey]
-          }, item.meta),
-          query: item.query
-        });
+        // this.$router.push({
+        //   path: this.$router.$avueRouter.getPath({
+        //     name: item[this.labelKey],
+        //     src: item[this.pathKey]
+        //   }, item.meta),
+        //   query: item.query
+        // });
       }
     }
   }

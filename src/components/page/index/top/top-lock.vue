@@ -60,7 +60,7 @@ export default {
       }
       this.$store.commit("SET_LOCK");
       setTimeout(() => {
-        this.$router.push({ path: "/lock" });
+        //this.$router.push({ path: "/lock" });
       }, 100);
     }
   },

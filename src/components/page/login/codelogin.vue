@@ -110,7 +110,12 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.$store.dispatch("LoginByPhone", this.loginForm).then(() => {
-            this.$router.push({ path: this.tagWel.value });
+            //this.$router.push({ path: this.tagWel.value });
+			this.$message({
+			  message: this.tagWel.value,
+			  type: "error"
+			});
+			//window.location.href="";
           });
         }
       });

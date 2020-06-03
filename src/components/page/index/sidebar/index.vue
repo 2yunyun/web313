@@ -38,7 +38,7 @@
     computed: {
       ...mapGetters(["website", "menu", "tag", "keyCollapse", "screen", "menuId"]),
       nowTagValue: function () {
-        return this.$router.$avueRouter.getValue(this.$route);
+        //return this.$router.$avueRouter.getValue(this.$route);
       }
     },
     mounted() {

@@ -30,7 +30,7 @@ export default {
     handleClick(thirdpart) {
       let appid, client_id, redirect_uri, url;
       redirect_uri = encodeURIComponent(
-        window.location.origin + "/#/authredirect"
+        window.location.origin + "loginAuthredirect.html"
       );
       if (thirdpart === "wechat") {
         appid = "xxxx";

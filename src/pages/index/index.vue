@@ -1,13 +1,13 @@
 <template>
   <div class="avue-contail" :class="{'avue--collapse':isCollapse}">
-    <div class="avue-header">
+   <div class="avue-header">
       <!-- 顶部导航栏 -->
       <top ref="top"/>
     </div>
     <div class="avue-layout">
       <div class="avue-left">
         <!-- 左侧导航栏 -->
-        <sidebar/>
+        <sidebar></sidebar>
       </div>
       <div class="avue-main">
         <!-- 顶部标签卡 -->
@@ -17,10 +17,11 @@
         </transition>
         <!-- 主体视图层 -->
         <div style="height:100%;overflow-y:auto;overflow-x:hidden;" id="avue-view" v-show="!isSearch">
-          <keep-alive>
-            <router-view class="avue-view" v-if="$route.meta.$keepAlive"/>
+         <!--  <keep-alive>
+            <router-view class="avue-view" v-if="$route.meta.$keepAlive"/> 
           </keep-alive>
-          <router-view class="avue-view" v-if="!$route.meta.$keepAlive"/>
+           <router-view class="avue-view" v-if="!$route.meta.$keepAlive"/> -->
+		   <div class="avue-view"></div>
         </div>
       </div>
     </div>
@@ -46,7 +47,7 @@
       search,
       sidebar
     },
-    name: "index",
+    
     provide() {
       return {
         index: this
@@ -90,7 +91,7 @@
       openMenu(item = {}) {
         this.$store.dispatch("GetMenu", item.id).then(data => {
           if (data.length !== 0) {
-            this.$router.$avueRouter.formatRoutes(data, true);
+           // this.$router.$avueRouter.formatRoutes(data, true);
           }
           //当点击顶部菜单后默认打开第一个菜单
           /*if (!this.validatenull(item)) {

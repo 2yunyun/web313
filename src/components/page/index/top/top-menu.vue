@@ -46,9 +46,9 @@
     methods: {
       openHome(itemHome) {
         this.index.openMenu(itemHome);
-        this.$router.push({
-          path: this.$router.$avueRouter.getPath({name: itemHome.name, src: ''}, {})
-        });
+        // this.$router.push({
+        //   path: this.$router.$avueRouter.getPath({name: itemHome.name, src: ''}, {})
+        // });
       },
       openMenu(item) {
         this.index.openMenu(item)
@@ -59,10 +59,10 @@
         });
       },
       generateTitle(item) {
-        return this.$router.$avueRouter.generateTitle(
-          item.name,
-          (item.meta || {}).i18n
-        );
+        // return this.$router.$avueRouter.generateTitle(
+        //   item.name,
+        //   (item.meta || {}).i18n
+        // );
       },
     }
   };

@@ -83,10 +83,10 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
-            <router-link to="/">{{$t('navbar.dashboard')}}</router-link>
+            <!-- <router-link to="/"> -->{{$t('navbar.dashboard')}}<!-- </router-link> -->
           </el-dropdown-item>
           <el-dropdown-item>
-            <router-link to="/info/index">{{$t('navbar.userinfo')}}</router-link>
+            <!-- <router-link to="/info/index"> -->{{$t('navbar.userinfo')}}<!-- </router-link> -->
           </el-dropdown-item>
           <el-dropdown-item @click.native="logout"
                             divided>{{$t('navbar.logOut')}}

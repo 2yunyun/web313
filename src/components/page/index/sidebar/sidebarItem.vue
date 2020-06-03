@@ -95,16 +95,16 @@
     },
     methods: {
       generateTitle(item) {
-        return this.$router.$avueRouter.generateTitle(
-          item[this.labelKey],
-          (item.meta || {}).i18n
-        );
+        // return this.$router.$avueRouter.generateTitle(
+        //   item[this.labelKey],
+        //   (item.meta || {}).i18n
+        // );
       },
       vaildAvtive(item) {
-        const groupFlag = (item["group"] || []).some(ele =>
-          this.$route.path.includes(ele)
-        );
-        return this.nowTagValue === item[this.pathKey] || groupFlag;
+        // const groupFlag = (item["group"] || []).some(ele =>
+        //   this.$route.path.includes(ele)
+        // );
+        // return this.nowTagValue === item[this.pathKey] || groupFlag;
       },
       vaildRoles(item) {
         item.meta = item.meta || {};
@@ -115,15 +115,15 @@
       },
       open (item) {
         if (this.screen <= 1) this.$store.commit("SET_COLLAPSE");
-        this.$router.$avueRouter.group = item.group;
-        this.$router.$avueRouter.meta = item.meta;
-        this.$router.push({
-          path: this.$router.$avueRouter.getPath({
-            name: item[this.labelKey],
-            src: item[this.pathKey]
-          }, item.meta),
-          query: item.query
-        });
+        // this.$router.$avueRouter.group = item.group;
+        // this.$router.$avueRouter.meta = item.meta;
+        // this.$router.push({
+        //   path: this.$router.$avueRouter.getPath({
+        //     name: item[this.labelKey],
+        //     src: item[this.pathKey]
+        //   }, item.meta),
+        //   query: item.query
+        // });
       }
     }
   };
