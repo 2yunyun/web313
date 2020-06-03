@@ -1,4 +1,5 @@
 import webCommon from '@config/common';
+import router from '@router/router';
 import store from '@/store';
 import i18n from '@/lang'
 
@@ -8,7 +9,8 @@ import App from '@pages/index/index.vue'
 Vue.prototype.webCommon = webCommon;
 
 new Vue({
-  store,
+	router,
+	store,
 	i18n,
 	render: h => h(App)
 }).$mount('#app')

@@ -142,15 +142,18 @@ RouterPlugin.install = function (vue, router, store, i18n) {
           component(resolve) {
             // 判断是否为首路由
             if (first) {
-              require(['../page/index'], resolve)
+				console.log("首路由");
+              //require(['../page/index'], resolve)
               return
               // 判断是否为多层路由
             } else if (isChild && !first) {
-              require(['../page/index/layout'], resolve)
+				console.log("多层路由");
+              //require(['../page/index/layout'], resolve)
               return
               // 判断是否为最终的页面视图
             } else {
-              require([`../${component}.vue`], resolve)
+				console.log("最终的页面视图");
+              //require([`../${component}.vue`], resolve)
             }
           },
           name: name,
@@ -165,12 +168,13 @@ RouterPlugin.install = function (vue, router, store, i18n) {
           // 处理是否为一级路由
           children: !isChild ? (() => {
             if (first) {
+				console.log("首路由");
               // 这里的isURL判断，因为这个网站有使用 iframe。所以需要判断是否为网页链接
-              if (!isURL(path)) oMenu[propsDefault.path] = `${path}/index`;
+              //if (!isURL(path)) oMenu[propsDefault.path] = `${path}/index`;
               return [{
-                component(resolve) {
-                  require([`../${component}.vue`], resolve)
-                },
+                // component(resolve) {
+                //   require([`../${component}.vue`], resolve)
+                // },
                 icon: icon,
                 name: name,
                 meta: meta,

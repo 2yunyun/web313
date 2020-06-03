@@ -163,6 +163,7 @@ const user = {
     GetMenu({commit, dispatch}, topMenuId) {
       return new Promise(resolve => {
         getRoutes(topMenuId).then((res) => {
+			console.log(res);
           const data = res.data.data
           let menu = deepClone(data);
           menu.forEach(ele => {

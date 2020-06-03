@@ -4,6 +4,9 @@ import VueAxios from 'vue-axios';
 import Avue from '@smallwei/avue';
 import '@smallwei/avue/lib/index.css';
 
+
+import router from '@router/router';
+
 import i18n from '@/lang' 
 import {loadStyle} from '@util/util'
 import Element from 'element-ui';
@@ -19,6 +22,7 @@ import {
 
 import website from '@config/website';
 
+Vue.use(router);
 Vue.use(VueAxios, axios);
 Vue.use(Element, {
   i18n: (key, value) => i18n.t(key, value)
